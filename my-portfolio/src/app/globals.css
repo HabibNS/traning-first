@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ========================================= */
+/* --- CUSTOM UTILITIES: PHONE FRAME --- */
+/* ========================================= */
+.phone-frame {
+  border: 6px solid #1a1a1a;
+  border-radius: 28px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background-color: #000;
+}
+
+.phone-frame img {
+  border-radius: 22px; 
+}
+
+/* --- KODE TAMBAHAN UNTUK KAMERA PUNCH HOLE (RESPONSIF) --- */
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: 1%; /* Jarak dari atas diatur dengan persentase */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7%; /* Lebar kamera akan selalu 7% dari lebar HP */
+  aspect-ratio: 1 / 1; /* Menjaga kamera tetap bulat sempurna meski frame berubah ukuran */
+  background-color: #1a1a1a;
+  border-radius: 50%;
+  z-index: 50;
+  box-shadow: inset -2px -2px 4px rgba(255,255,255,0.1), inset 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+/* --- KODE TAMBAHAN UNTUK TOMBOL VOLUME & POWER (RESPONSIF) --- */
+.phone-frame::after {
+  content: '';
+  position: absolute;
+  right: -10px; /* Menembus ketebalan border 6px */
+  top: 15%; /* Jarak tombol turun proporsional dari atas frame */
+  width: 4px; /* Ketebalan tombol */
+  height: 22%; /* Total bentang area tombol (mencakup Volume + Power) */
+  
+  /* Trik Menggambar Banyak Tombol dengan Gradasi (Linear Gradient):
+     - 0% hingga 55% = Blok warna hitam untuk Tombol Volume (Menyatu)
+     - 55% hingga 75% = Celah kosong (Transparan)
+     - 75% hingga 100% = Blok warna hitam untuk Tombol Power
+  */
+  background: linear-gradient(
+    to bottom,
+    #1a1a1a 0%, #1a1a1a 55%, 
+    transparent 55%, transparent 75%, 
+    #1a1a1a 75%, #1a1a1a 100%
+  );
+  
+  border-radius: 0 4px 4px 0; 
+  z-index: 40;
+}

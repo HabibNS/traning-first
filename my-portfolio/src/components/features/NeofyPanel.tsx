@@ -1,0 +1,355 @@
+import React from 'react';
+import Image from 'next/image';
+
+// ─── NEOFY BRAND TOKENS ──────────────────────────────────────────────────────
+// Primary    : #2E6F40  (Forest Green — main brand)
+// Bright     : #00E97B  (Neon Green — vibrant accent / CTA)
+// Header bg  : #68BA7F  (Mint Green — app header, matches splash)
+// Light bg   : #D5FADD  (Soft Mint — section backgrounds)
+// Lightest   : #CFFFDC  (Near-white mint — subtle fills)
+// Dark       : #253D2C  (Deep Forest — footer, dark surfaces)
+// Darkest    : #0C2713  (Near-black green — text, heavy accents)
+// Neutral    : #838783  (Muted gray — secondary text)
+// ─────────────────────────────────────────────────────────────────────────────
+
+interface NeofyPanelProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
+  const mockupImages = [
+    "/images/neofy/neofy-splash.jpeg",
+    "/images/neofy/neofy-login.jpeg",
+    "/images/neofy/neofy-homepage1.jpeg",
+    "/images/neofy/neofy-homepage2.jpeg",
+    "/images/neofy/neofy-overview.jpeg",
+    "/images/neofy/neofy-calendar.jpeg",
+    "/images/neofy/neofy-edit-calendar.jpeg",
+    "/images/neofy/neofy-history.jpeg",
+    "/images/neofy/neofy-recommendation1.jpeg",
+    "/images/neofy/neofy-about.jpeg",
+  ];
+
+  const techStack = [
+    { label: "Flutter", src: "/images/tech/flutter-logo.png", alt: "Flutter" },
+    { label: "Android Studio", src: "/images/tech/android-studio-logo.webp", alt: "Android Studio" },
+  ];
+
+  const meta = [
+    { title: "Role", value: "Mobile Apps Developer" },
+    { title: "Platform", value: "Android" },
+    { title: "Tech Stack", value: "Flutter · MVC · Firebase" },
+  ];
+
+  const jobDesc = [
+    "Mengembangkan dan merancang antarmuka (UI) aplikasi pemantauan konsumsi bahan bakar yang responsif menggunakan framework Flutter.",
+    "Menerapkan pola arsitektur MVVM (Model-View-ViewModel) dipadukan dengan state management Provider untuk memastikan struktur kode yang bersih, modular, dan mudah diuji.",
+    "Mengintegrasikan database lokal menggunakan SQLite untuk mengakomodasi pencatatan data secara offline agar aplikasi tetap berfungsi optimal di area operasional terpencil.",
+    "Menghubungkan aplikasi dengan REST API eksternal guna memproses sinkronisasi data transaksi pengisian bahan bakar ke server pusat secara real-time.",
+    "Melakukan pemecahan masalah (debugging), optimalisasi performa rendering, dan penanganan error untuk memastikan stabilitas aplikasi pada perangkat Android.",
+  ];
+
+  return (
+    <>
+      {/* ── OVERLAY ─────────────────────────────────────────────────────────── */}
+      <div
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        onClick={onClose}
+      />
+
+      {/* ── PANEL ───────────────────────────────────────────────────────────── */}
+      <div
+        className={`fixed top-0 right-0 h-full w-full shadow-2xl z-50
+          transform transition-transform duration-500 ease-in-out overflow-y-auto
+          selection:bg-[#00E97B] selection:text-[#0C2713]
+          ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+        style={{ backgroundColor: "#CFFFDC" }}
+      >
+
+        {/* ── STICKY HEADER — matches app's mint green header ───────────────── */}
+        <header
+          className="px-6 md:px-12 py-5 flex justify-between items-center sticky top-0 z-[60]"
+          style={{ backgroundColor: "#68BA7F" }}
+        >
+          <button
+            onClick={onClose}
+            className="flex items-center gap-2 font-semibold text-sm uppercase tracking-widest
+              group cursor-pointer hover:opacity-80 transition-opacity"
+            style={{ color: "#0C2713" }}
+          >
+            <span className="group-hover:-translate-x-1 transition-transform inline-block">←</span>
+            Back
+          </button>
+
+          <span
+            className="text-xs font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full"
+            style={{ backgroundColor: "#0C2713", color: "#00E97B" }}
+          >
+            Project Review
+          </span>
+        </header>
+
+        <main>
+
+          {/* ══════════════════════════════════════════════════════════════════
+              SECTION 1 — HERO: overlapping phones + meta card
+              Mirrors the app's splash screen aesthetic: soft mint + dark green logo
+          ══════════════════════════════════════════════════════════════════ */}
+          <section
+            className="overflow-hidden py-20 md:py-28 px-6 md:px-12"
+            style={{
+              background: "linear-gradient(160deg, #253D2C 0%, #2E6F40 50%, #419759 100%)",
+            }}
+          >
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+              {/* Phone cluster */}
+              <div className="relative h-[460px] md:h-[600px] w-full flex justify-center items-center">
+                {/* Back-center phone */}
+                <div
+                  className="absolute z-10 w-44 md:w-60 phone-frame aspect-[9/19]
+                    -translate-y-12 md:-translate-y-16 shadow-2xl bg-black
+                    transition-transform hover:-translate-y-20 duration-500"
+                  style={{ boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 2px rgba(209,250,221,0.15)" }}
+                >
+                  <Image src="/images/neofy/neofy-overview.jpeg" alt="NeoFy Dashboard" fill className="object-cover" />
+                </div>
+
+                {/* Front-left phone */}
+                <div
+                  className="absolute z-20 w-36 md:w-52 phone-frame aspect-[9/19]
+                    -translate-x-24 md:-translate-x-36 translate-y-16 md:translate-y-24
+                    shadow-2xl bg-black transition-transform hover:translate-y-10 duration-500"
+                  style={{ boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 2px rgba(0,233,123,0.3)" }}
+                >
+                  <Image src="/images/neofy/neofy-splash.jpeg" alt="NeoFy Splash Screen" fill className="object-cover" />
+                </div>
+
+                {/* Front-right phone */}
+                <div
+                  className="absolute z-20 w-36 md:w-52 phone-frame aspect-[9/19]
+                    translate-x-24 md:translate-x-36 translate-y-4 md:translate-y-8
+                    shadow-2xl bg-black transition-transform hover:-translate-y-2 duration-500"
+                  style={{ boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 2px rgba(209,250,221,0.15)" }}
+                >
+                  <Image src="/images/neofy/neofy-homepage1.jpeg" alt="NeoFy List View" fill className="object-cover" />
+                </div>
+              </div>
+
+              {/* Title + meta card */}
+              <div className="flex flex-col gap-8 lg:pl-8 z-30">
+                <div>
+                  {/* Tagline — taken from real app: "The Future is Ours" */}
+                  <p
+                    className="text-xs font-bold tracking-[0.3em] uppercase mb-3"
+                    style={{ color: "#00E97B" }}
+                  >
+                    The Future is Ours
+                  </p>
+                  <h1
+                    className="text-6xl md:text-7xl lg:text-[84px] font-extrabold tracking-tight leading-[0.88]"
+                    style={{ color: "#CFFFDC" }}
+                  >
+                    Neo<span style={{ color: "#00E97B" }}>Fy</span><span style={{ color: "#68BA7F" }}>.</span>
+                  </h1>
+                </div>
+
+                {/* Meta card — white card style matching app UI */}
+                <div
+                  className="rounded-2xl p-7 flex flex-col gap-5 max-w-sm"
+                  style={{
+                    backgroundColor: "rgba(207,255,220,0.12)",
+                    border: "1px solid rgba(104,186,127,0.35)",
+                    backdropFilter: "blur(12px)",
+                  }}
+                >
+                  {meta.map(({ title, value }) => (
+                    <div key={title} className="flex flex-col gap-0.5">
+                      <span
+                        className="text-xs font-bold uppercase tracking-widest"
+                        style={{ color: "#68BA7F" }}
+                      >
+                        {title}
+                      </span>
+                      <span className="text-base font-semibold" style={{ color: "#CFFFDC" }}>
+                        {value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════════════════
+              SECTION 2 — GALLERY
+              Background: D5FADD soft mint (matches app's dashboard bg)
+          ══════════════════════════════════════════════════════════════════ */}
+          <section
+            className="py-16 md:py-24 px-6 md:px-12 border-b"
+            style={{ backgroundColor: "#D5FADD", borderColor: "#6AEC8E" }}
+          >
+            <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+
+              {/* Left column */}
+              <div className="lg:col-span-3 flex flex-col items-center gap-8">
+
+                {/* Logo bubble — dark forest like the app logo bg */}
+                <div
+                  className="w-20 h-20 rounded-full flex items-center justify-center relative overflow-hidden shadow-lg"
+                  style={{ backgroundColor: "#00E97B" }}
+                >
+                  <Image src="/images/neofy/neofy-logo.png" alt="NeoFy Logo" fill className="object-contain p-3" />
+                </div>
+
+                {/* Hero phone */}
+                <div
+                  className="w-48 md:w-56 phone-frame aspect-[9/19] bg-black relative"
+                  style={{ boxShadow: "0 20px 50px rgba(46,111,64,0.25)", outline: "1px solid #6AEC8E" }}
+                >
+                  <Image src="/images/neofy/neofy-homepage1.jpeg" alt="NeoFy Main Interface" fill className="object-cover" />
+                </div>
+
+                {/* Tech badges */}
+                <div className="flex flex-wrap gap-3 justify-center w-full">
+                  {techStack.map(({ label, src, alt }) => (
+                    <div
+                      key={label}
+                      className="flex items-center gap-2 px-3 py-2 rounded-xl shadow-sm
+                        hover:-translate-y-0.5 transition-transform cursor-default"
+                      style={{
+                        backgroundColor: "#fff",
+                        border: "1px solid #55C173",
+                      }}
+                    >
+                      <div className="w-6 h-6 relative flex-shrink-0">
+                        <Image src={src} alt={alt} fill className="object-contain" />
+                      </div>
+                      <span className="text-xs font-semibold" style={{ color: "#253D2C" }}>{label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Screen grid */}
+              <div className="lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5">
+                {mockupImages.map((imagePath, index) => (
+                  <div
+                    key={index}
+                    className="w-full phone-frame aspect-[9/19] bg-black relative
+                      transition-transform hover:-translate-y-2 duration-300 rounded-[16px] overflow-hidden"
+                    style={{ boxShadow: "0 8px 24px rgba(46,111,64,0.18)", outline: "1px solid #6AEC8E" }}
+                  >
+                    <Image src={imagePath} alt={`Screen ${index + 1}`} fill className="object-cover" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* ══════════════════════════════════════════════════════════════════
+              SECTION 3 — TECHNICAL APPROACH
+              White card style matching app's content cards
+          ══════════════════════════════════════════════════════════════════ */}
+          <section
+            className="py-16 md:py-24 px-6 md:px-12"
+            style={{ backgroundColor: "#CFFFDC" }}
+          >
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
+
+              {/* Sticky label */}
+              <div className="md:col-span-4 lg:col-span-3">
+                <h3
+                  className="text-3xl font-extrabold uppercase leading-tight md:sticky md:top-24"
+                  style={{ color: "#2E6F40" }}
+                >
+                  Technical<br />Approach.
+                </h3>
+              </div>
+
+              {/* Content — white card matching app's card style */}
+              <div className="md:col-span-8 lg:col-span-7">
+                <div
+                  className="rounded-2xl p-8 md:p-10 flex flex-col gap-10"
+                  style={{ backgroundColor: "#fff", border: "1px solid #81E59D" }}
+                >
+
+                  {/* Description */}
+                  <div>
+                    <h4
+                      className="text-xs font-bold tracking-widest uppercase mb-4 pb-2 border-b-2 inline-block"
+                      style={{ color: "#2E6F40", borderColor: "#00E97B" }}
+                    >
+                      Description
+                    </h4>
+                    <p className="text-base md:text-lg leading-relaxed" style={{ color: "#395040" }}>
+                      NeoFy adalah aplikasi mobile tingkat enterprise yang dirancang khusus
+                      untuk memantau, mengelola, dan menganalisis data konsumsi bahan bakar secara akurat dan
+                      real-time. Fokus utama proyek ini adalah menyediakan visualisasi data operasional yang
+                      intuitif bagi pengguna, serta memastikan keandalan penyimpanan data pada kondisi jaringan
+                      yang tidak stabil di lapangan.
+                    </p>
+                  </div>
+
+                  {/* Divider */}
+                  <div style={{ borderTop: "1px solid #D5FADD" }} />
+
+                  {/* Job description */}
+                  <div>
+                    <h4
+                      className="text-xs font-bold tracking-widest uppercase mb-6 pb-2 border-b-2 inline-block"
+                      style={{ color: "#2E6F40", borderColor: "#00E97B" }}
+                    >
+                      Job Description
+                    </h4>
+                    <ul className="flex flex-col gap-5">
+                      {jobDesc.map((item, i) => (
+                        <li key={i} className="flex gap-4 items-start">
+                          {/* Numbered bullet — neon green circle on dark bg */}
+                          <span
+                            className="flex-shrink-0 w-7 h-7 rounded-full text-xs font-bold
+                              flex items-center justify-center mt-0.5"
+                            style={{ backgroundColor: "#2E6F40", color: "#00E97B" }}
+                          >
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <p className="text-base md:text-lg leading-relaxed" style={{ color: "#395040" }}>
+                            {item}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </main>
+
+        {/* ── FOOTER — dark forest matching #253D2C ─────────────────────────── */}
+        <footer
+          className="px-6 md:px-12 py-6 flex justify-between items-center text-sm font-medium"
+          style={{ backgroundColor: "#253D2C" }}
+        >
+          <span style={{ color: "rgba(207,255,220,0.5)" }}>
+            © {new Date().getFullYear()} Habib Nur Sholeh.
+          </span>
+          <a
+            href="https://github.com/HabibNS"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold hover:opacity-80 transition-opacity"
+            style={{ color: "#00E97B" }}
+          >
+            View on GitHub ↗
+          </a>
+        </footer>
+
+      </div>
+    </>
+  );
+}
