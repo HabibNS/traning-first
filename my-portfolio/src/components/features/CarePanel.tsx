@@ -1,45 +1,44 @@
 import React from 'react';
 import Image from 'next/image';
 
-// ─── NEOFY BRAND TOKENS ──────────────────────────────────────────────────────
-// Primary    : #2E6F40  (Forest Green — main brand)
-// Bright     : #00E97B  (Neon Green — vibrant accent / CTA)
-// Header bg  : #68BA7F  (Mint Green — app header, matches splash)
-// Light bg   : #D5FADD  (Soft Mint — section backgrounds)
-// Lightest   : #CFFFDC  (Near-white mint — subtle fills)
-// Dark       : #253D2C  (Deep Forest — footer, dark surfaces)
-// Darkest    : #0C2713  (Near-black green — text, heavy accents)
-// Neutral    : #838783  (Muted gray — secondary text)
+// ─── CARE BRAND TOKENS ───────────────────────────────────────────────────────
+// Primary    : #615EFC  (Indigo — main brand, calm but confident)
+// Primary Lt : #7E8EF1  (Periwinkle — secondary accent, hover states)
+// Sage       : #D1D8C5  (Muted Sage — natural, therapeutic accent)
+// Light bg   : #EEEEEE  (Neutral Light Gray — section backgrounds)
+// Dark       : #2C2A8C  (Deep Indigo — footer, dark surfaces)
+// Darkest    : #1B1A4D  (Near-black indigo — headline text on light)
+// Ink        : #4A4A55  (Muted slate — body copy)
 // ─────────────────────────────────────────────────────────────────────────────
 
-interface NeofyPanelProps {
+interface CarePanelProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
+export default function CarePanel({ isOpen, onClose }: CarePanelProps) {
   const mockupImages = [
-    "/images/neofy/neofy-splash.jpeg",
-    "/images/neofy/neofy-login.jpeg",
-    "/images/neofy/neofy-homepage1.jpeg",
-    "/images/neofy/neofy-homepage2.jpeg",
-    "/images/neofy/neofy-overview.jpeg",
-    "/images/neofy/neofy-calendar.jpeg",
-    "/images/neofy/neofy-edit-calendar.jpeg",
-    "/images/neofy/neofy-history.jpeg",
-    "/images/neofy/neofy-recommendation1.jpeg",
-    "/images/neofy/neofy-about.jpeg",
+    "/images/care/care-onboarding1.png",
+    "/images/care/care-loginscreen1.png",
+    "/images/care/care-beranda1.png",
+    "/images/care/care-deteksiemosi1.png",
+    "/images/care/care-hasildeteksiemosi1.png",
+    "/images/care/care-hasildeteksiemosi2.png",
+    "/images/care/care-kalender1.png",
+    "/images/care/care-doctor1.png",
+    "/images/care/care-profilescreen1.png",
+    "/images/care/care-aboutus1.png",
   ];
 
   const techStack = [
-    { label: "Flutter", src: "/images/tech/flutter-logo.png", alt: "Flutter" },
+    { label: "Kotlin", src: "/images/tech/kotlin-logo.png", alt: "Kotlin" },
     { label: "Android Studio", src: "/images/tech/android-studio-logo.webp", alt: "Android Studio" },
   ];
 
   const meta = [
     { title: "Role", value: "Mobile Apps Developer" },
     { title: "Platform", value: "Android" },
-    { title: "Tech Stack", value: "Flutter · MVC · Firebase" },
+    { title: "Tech Stack", value: "Kotlin · Android Studio" },
   ];
 
   const jobDesc = [
@@ -64,21 +63,20 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
       <div
         className={`fixed top-0 right-0 h-full w-full shadow-2xl z-50
           transform transition-transform duration-500 ease-in-out overflow-y-auto
-          selection:bg-[#00E97B] selection:text-[#0C2713]
+          selection:bg-[#615EFC] selection:text-white
           ${isOpen ? "translate-x-0" : "translate-x-full"}`}
-        style={{ backgroundColor: "#CFFFDC" }}
+        style={{ backgroundColor: "#EEEEEE" }}
       >
 
-        {/* ── STICKY HEADER — matches app's mint green header ───────────────── */}
+        {/* ── STICKY HEADER ───────────────────────────────────────────────────── */}
         <header
           className="px-6 md:px-12 py-5 flex justify-between items-center sticky top-0 z-[60]"
-          style={{ backgroundColor: "#68BA7F" }}
+          style={{ backgroundColor: "#615EFC" }}
         >
           <button
             onClick={onClose}
-            className="flex items-center gap-2 font-semibold text-sm uppercase tracking-widest
+            className="flex items-center gap-2 text-white font-semibold text-sm uppercase tracking-widest
               group cursor-pointer hover:opacity-80 transition-opacity"
-            style={{ color: "#0C2713" }}
           >
             <span className="group-hover:-translate-x-1 transition-transform inline-block">←</span>
             Back
@@ -86,7 +84,7 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
 
           <span
             className="text-xs font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full"
-            style={{ backgroundColor: "#0C2713", color: "#00E97B" }}
+            style={{ backgroundColor: "#D1D8C5", color: "#1B1A4D" }}
           >
             Project Review
           </span>
@@ -96,12 +94,11 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
 
           {/* ══════════════════════════════════════════════════════════════════
               SECTION 1 — HERO: overlapping phones + meta card
-              Mirrors the app's splash screen aesthetic: soft mint + dark green logo
           ══════════════════════════════════════════════════════════════════ */}
           <section
             className="overflow-hidden py-20 md:py-28 px-6 md:px-12"
             style={{
-              background: "linear-gradient(160deg, #253D2C 0%, #2E6F40 50%, #419759 100%)",
+              background: "linear-gradient(160deg, #1B1A4D 0%, #2C2A8C 45%, #615EFC 100%)",
             }}
           >
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -113,9 +110,9 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
                   className="absolute z-10 w-44 md:w-60 phone-frame aspect-[9/19]
                     -translate-y-12 md:-translate-y-16 shadow-2xl bg-black
                     transition-transform hover:-translate-y-20 duration-500"
-                  style={{ boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 2px rgba(209,250,221,0.15)" }}
+                  style={{ boxShadow: "0 25px 60px rgba(0,0,0,0.45), 0 0 0 2px rgba(238,238,238,0.15)" }}
                 >
-                  <Image src="/images/neofy/neofy-overview.jpeg" alt="NeoFy Dashboard" fill className="object-cover" />
+                  <Image src="/images/care/care-beranda1.png" alt="Care Dashboard" fill className="object-cover" />
                 </div>
 
                 {/* Front-left phone */}
@@ -123,9 +120,9 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
                   className="absolute z-20 w-36 md:w-52 phone-frame aspect-[9/19]
                     -translate-x-24 md:-translate-x-36 translate-y-16 md:translate-y-24
                     shadow-2xl bg-black transition-transform hover:translate-y-10 duration-500"
-                  style={{ boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 2px rgba(0,233,123,0.3)" }}
+                  style={{ boxShadow: "0 25px 60px rgba(0,0,0,0.45), 0 0 0 2px rgba(209,216,197,0.5)" }}
                 >
-                  <Image src="/images/neofy/neofy-splash.jpeg" alt="NeoFy Splash Screen" fill className="object-cover" />
+                  <Image src="/images/care/care-splashscreen.png" alt="Care Splash Screen" fill className="object-cover" />
                 </div>
 
                 {/* Front-right phone */}
@@ -133,36 +130,34 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
                   className="absolute z-20 w-36 md:w-52 phone-frame aspect-[9/19]
                     translate-x-24 md:translate-x-36 translate-y-4 md:translate-y-8
                     shadow-2xl bg-black transition-transform hover:-translate-y-2 duration-500"
-                  style={{ boxShadow: "0 25px 60px rgba(0,0,0,0.5), 0 0 0 2px rgba(209,250,221,0.15)" }}
+                  style={{ boxShadow: "0 25px 60px rgba(0,0,0,0.45), 0 0 0 2px rgba(238,238,238,0.15)" }}
                 >
-                  <Image src="/images/neofy/neofy-homepage1.jpeg" alt="NeoFy List View" fill className="object-cover" />
+                  <Image src="/images/care/care-deteksiemosi1.png" alt="Care List View" fill className="object-cover" />
                 </div>
               </div>
 
               {/* Title + meta card */}
               <div className="flex flex-col gap-8 lg:pl-8 z-30">
                 <div>
-                  {/* Tagline — taken from real app: "The Future is Ours" */}
                   <p
                     className="text-xs font-bold tracking-[0.3em] uppercase mb-3"
-                    style={{ color: "#00E97B" }}
+                    style={{ color: "#D1D8C5" }}
                   >
-                    The Future is Ours
+                    Emotional Wellness App
                   </p>
                   <h1
-                    className="text-6xl md:text-7xl lg:text-[84px] font-extrabold tracking-tight leading-[0.88]"
-                    style={{ color: "#CFFFDC" }}
+                    className="text-6xl md:text-7xl lg:text-[84px] font-extrabold tracking-tight leading-[0.88] text-white"
                   >
-                    Neo<span style={{ color: "#00E97B" }}>Fy</span><span style={{ color: "#68BA7F" }}>.</span>
+                    Care<span style={{ color: "#D1D8C5" }}>.</span>
                   </h1>
                 </div>
 
-                {/* Meta card — white card style matching app UI */}
+                {/* Meta card — glass on indigo */}
                 <div
                   className="rounded-2xl p-7 flex flex-col gap-5 max-w-sm"
                   style={{
-                    backgroundColor: "rgba(207,255,220,0.12)",
-                    border: "1px solid rgba(104,186,127,0.35)",
+                    backgroundColor: "rgba(238,238,238,0.10)",
+                    border: "1px solid rgba(209,216,197,0.30)",
                     backdropFilter: "blur(12px)",
                   }}
                 >
@@ -170,13 +165,11 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
                     <div key={title} className="flex flex-col gap-0.5">
                       <span
                         className="text-xs font-bold uppercase tracking-widest"
-                        style={{ color: "#68BA7F" }}
+                        style={{ color: "#D1D8C5" }}
                       >
                         {title}
                       </span>
-                      <span className="text-base font-semibold" style={{ color: "#CFFFDC" }}>
-                        {value}
-                      </span>
+                      <span className="text-white text-base font-semibold">{value}</span>
                     </div>
                   ))}
                 </div>
@@ -185,32 +178,31 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
           </section>
 
           {/* ══════════════════════════════════════════════════════════════════
-              SECTION 2 — GALLERY
-              Background: D5FADD soft mint (matches app's dashboard bg)
+              SECTION 2 — GALLERY + LOGO + TECH BADGES
           ══════════════════════════════════════════════════════════════════ */}
           <section
             className="py-16 md:py-24 px-6 md:px-12 border-b"
-            style={{ backgroundColor: "#D5FADD", borderColor: "#6AEC8E" }}
+            style={{ backgroundColor: "#F5F5F0", borderColor: "#D1D8C5" }}
           >
             <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
               {/* Left column */}
               <div className="lg:col-span-3 flex flex-col items-center gap-8">
 
-                {/* Logo bubble — dark forest like the app logo bg */}
+                {/* Logo bubble */}
                 <div
                   className="w-20 h-20 rounded-full flex items-center justify-center relative overflow-hidden shadow-lg"
-                  style={{ backgroundColor: "#68BA7F" }}
+                  style={{ backgroundColor: "#EEEEEE" }}
                 >
-                  <Image src="/images/neofy/neofy-logo.png" alt="NeoFy Logo" fill className="object-contain p-3" />
+                  <Image src="/images/care/care-logo.png" alt="Care Logo" fill className="object-contain p-3" />
                 </div>
 
                 {/* Hero phone */}
                 <div
                   className="w-48 md:w-56 phone-frame aspect-[9/19] bg-black relative"
-                  style={{ boxShadow: "0 20px 50px rgba(46,111,64,0.25)", outline: "1px solid #6AEC8E" }}
+                  style={{ boxShadow: "0 20px 50px rgba(97,94,252,0.20)", outline: "1px solid #7E8EF1" }}
                 >
-                  <Image src="/images/neofy/neofy-homepage1.jpeg" alt="NeoFy Main Interface" fill className="object-cover" />
+                  <Image src="/images/care/care-hasildeteksiemosi2.png" alt="Care Main Interface" fill className="object-cover" />
                 </div>
 
                 {/* Tech badges */}
@@ -222,13 +214,13 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
                         hover:-translate-y-0.5 transition-transform cursor-default"
                       style={{
                         backgroundColor: "#fff",
-                        border: "1px solid #55C173",
+                        border: "1px solid #7E8EF1",
                       }}
                     >
                       <div className="w-6 h-6 relative flex-shrink-0">
                         <Image src={src} alt={alt} fill className="object-contain" />
                       </div>
-                      <span className="text-xs font-semibold" style={{ color: "#253D2C" }}>{label}</span>
+                      <span className="text-xs font-semibold" style={{ color: "#2C2A8C" }}>{label}</span>
                     </div>
                   ))}
                 </div>
@@ -241,7 +233,7 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
                     key={index}
                     className="w-full phone-frame aspect-[9/19] bg-black relative
                       transition-transform hover:-translate-y-2 duration-300 rounded-[16px] overflow-hidden"
-                    style={{ boxShadow: "0 8px 24px rgba(46,111,64,0.18)", outline: "1px solid #6AEC8E" }}
+                    style={{ boxShadow: "0 8px 24px rgba(97,94,252,0.15)", outline: "1px solid #D1D8C5" }}
                   >
                     <Image src={imagePath} alt={`Screen ${index + 1}`} fill className="object-cover" />
                   </div>
@@ -252,11 +244,10 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
 
           {/* ══════════════════════════════════════════════════════════════════
               SECTION 3 — TECHNICAL APPROACH
-              White card style matching app's content cards
           ══════════════════════════════════════════════════════════════════ */}
           <section
             className="py-16 md:py-24 px-6 md:px-12"
-            style={{ backgroundColor: "#CFFFDC" }}
+            style={{ backgroundColor: "#EEEEEE" }}
           >
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
 
@@ -264,29 +255,29 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
               <div className="md:col-span-4 lg:col-span-3">
                 <h3
                   className="text-3xl font-extrabold uppercase leading-tight md:sticky md:top-24"
-                  style={{ color: "#2E6F40" }}
+                  style={{ color: "#615EFC" }}
                 >
                   Technical<br />Approach.
                 </h3>
               </div>
 
-              {/* Content — white card matching app's card style */}
+              {/* Content — white card */}
               <div className="md:col-span-8 lg:col-span-7">
                 <div
                   className="rounded-2xl p-8 md:p-10 flex flex-col gap-10"
-                  style={{ backgroundColor: "#fff", border: "1px solid #81E59D" }}
+                  style={{ backgroundColor: "#fff", border: "1px solid #D1D8C5" }}
                 >
 
                   {/* Description */}
                   <div>
                     <h4
                       className="text-xs font-bold tracking-widest uppercase mb-4 pb-2 border-b-2 inline-block"
-                      style={{ color: "#2E6F40", borderColor: "#00E97B" }}
+                      style={{ color: "#2C2A8C", borderColor: "#615EFC" }}
                     >
                       Description
                     </h4>
-                    <p className="text-base md:text-lg leading-relaxed" style={{ color: "#395040" }}>
-                      NeoFy adalah aplikasi mobile tingkat enterprise yang dirancang khusus
+                    <p className="text-base md:text-lg leading-relaxed" style={{ color: "#4A4A55" }}>
+                      Care adalah aplikasi mobile tingkat enterprise yang dirancang khusus
                       untuk memantau, mengelola, dan menganalisis data konsumsi bahan bakar secara akurat dan
                       real-time. Fokus utama proyek ini adalah menyediakan visualisasi data operasional yang
                       intuitif bagi pengguna, serta memastikan keandalan penyimpanan data pada kondisi jaringan
@@ -295,28 +286,28 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
                   </div>
 
                   {/* Divider */}
-                  <div style={{ borderTop: "1px solid #D5FADD" }} />
+                  <div style={{ borderTop: "1px solid #EEEEEE" }} />
 
                   {/* Job description */}
                   <div>
                     <h4
                       className="text-xs font-bold tracking-widest uppercase mb-6 pb-2 border-b-2 inline-block"
-                      style={{ color: "#2E6F40", borderColor: "#00E97B" }}
+                      style={{ color: "#2C2A8C", borderColor: "#615EFC" }}
                     >
                       Job Description
                     </h4>
                     <ul className="flex flex-col gap-5">
                       {jobDesc.map((item, i) => (
                         <li key={i} className="flex gap-4 items-start">
-                          {/* Numbered bullet — neon green circle on dark bg */}
+                          {/* Numbered bullet */}
                           <span
                             className="flex-shrink-0 w-7 h-7 rounded-full text-xs font-bold
                               flex items-center justify-center mt-0.5"
-                            style={{ backgroundColor: "#2E6F40", color: "#00E97B" }}
+                            style={{ backgroundColor: "#615EFC", color: "#fff" }}
                           >
                             {String(i + 1).padStart(2, "0")}
                           </span>
-                          <p className="text-base md:text-lg leading-relaxed" style={{ color: "#395040" }}>
+                          <p className="text-base md:text-lg leading-relaxed" style={{ color: "#4A4A55" }}>
                             {item}
                           </p>
                         </li>
@@ -330,12 +321,12 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
 
         </main>
 
-        {/* ── FOOTER — dark forest matching #253D2C ─────────────────────────── */}
+        {/* ── FOOTER ────────────────────────────────────────────────────────── */}
         <footer
           className="px-6 md:px-12 py-6 flex justify-between items-center text-sm font-medium"
-          style={{ backgroundColor: "#253D2C" }}
+          style={{ backgroundColor: "#1B1A4D" }}
         >
-          <span style={{ color: "rgba(207,255,220,0.5)" }}>
+          <span style={{ color: "rgba(238,238,238,0.55)" }}>
             © {new Date().getFullYear()} Habib Nur Sholeh.
           </span>
           <a
@@ -343,7 +334,7 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold hover:opacity-80 transition-opacity"
-            style={{ color: "#00E97B" }}
+            style={{ color: "#D1D8C5" }}
           >
             View on GitHub ↗
           </a>

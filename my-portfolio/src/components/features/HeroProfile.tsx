@@ -6,6 +6,8 @@ import ContactPanel from './ContactPanel';
 import TjpFuelPanel from './TjpFuelPanel'; // 1. Import panel baru
 import SafiraPanel from './SafiraPanel'; // Import panel Safira
 import NeofyPanel from './NeofyPanel'; // Import panel Neofy
+import CarePanel from './CarePanel'; // Import panel Care
+import WarehousePanel from './WarehousePanel'; // Import panel WareHouse
 
 export default function HeroProfile() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
@@ -16,6 +18,8 @@ export default function HeroProfile() {
   const [isTjpOpen, setIsTjpOpen] = useState(false); 
   const [isSafiraOpen, setIsSafiraOpen] = useState(false); 
   const [isNeofyOpen, setIsNeofyOpen] = useState(false);
+  const [isCareOpen, setIsCareOpen] = useState(false);
+  const [isWarehouseOpen, setIsWarehouseOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen flex flex-col justify-between bg-white text-black font-sans overflow-hidden">
@@ -53,7 +57,9 @@ export default function HeroProfile() {
                 onClick={() => setIsSafiraOpen(true)} 
                 className="py-5 flex justify-between items-center w-full cursor-pointer text-left"
               >
-                <span className="text-xl md:text-2xl font-medium text-gray-900 group-hover:translate-x-2 transition-transform">SAFIRA</span>
+                <span className="text-xl md:text-2xl font-medium text-gray-900 group-hover:translate-x-2 transition-transform">
+                  SAFIRA
+                </span>
                 <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
               </button>
             </li>
@@ -76,7 +82,33 @@ export default function HeroProfile() {
                 onClick={() => setIsNeofyOpen(true)} 
                 className="py-5 flex justify-between items-center w-full cursor-pointer text-left"
               >
-                <span className="text-xl md:text-2xl font-medium text-gray-900 group-hover:translate-x-2 transition-transform">NeoFy</span>
+                <span className="text-xl md:text-2xl font-medium text-gray-900 group-hover:translate-x-2 transition-transform">
+                  NeoFy
+                </span>
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+              </button>
+            </li>
+
+            <li className="border-b border-gray-200 group hover:border-black transition-colors">
+              <button 
+                onClick={() => setIsCareOpen(true)} 
+                className="py-5 flex justify-between items-center w-full cursor-pointer text-left"
+              >
+                <span className="text-xl md:text-2xl font-medium text-gray-900 group-hover:translate-x-2 transition-transform">
+                  CARE
+                </span>
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+              </button>
+            </li>
+
+            <li className="border-b border-gray-200 group hover:border-black transition-colors">
+              <button 
+                onClick={() => setIsWarehouseOpen(true)} 
+                className="py-5 flex justify-between items-center w-full cursor-pointer text-left"
+              >
+                <span className="text-xl md:text-2xl font-medium text-gray-900 group-hover:translate-x-2 transition-transform">
+                  Warehouse RFID System
+                </span>
                 <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
               </button>
             </li>
@@ -101,6 +133,8 @@ export default function HeroProfile() {
       <TjpFuelPanel isOpen={isTjpOpen} onClose={() => setIsTjpOpen(false)} />
       <SafiraPanel isOpen={isSafiraOpen} onClose={() => setIsSafiraOpen(false)} />
       <NeofyPanel isOpen={isNeofyOpen} onClose={() => setIsNeofyOpen(false)} />
+      <CarePanel isOpen={isCareOpen} onClose={() => setIsCareOpen(false)} />
+      <WarehousePanel isOpen={isWarehouseOpen} onClose={() => setIsWarehouseOpen(false)} />
     </div>
   );
 }

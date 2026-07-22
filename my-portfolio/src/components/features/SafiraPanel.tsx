@@ -9,6 +9,69 @@ import Image from 'next/image';
 // Success  : #22C55E  (Green — for status badges)
 // Warning  : #F59E0B  (Amber — for warnings)
 // ─────────────────────────────────────────────────────────────────────────────
+//
+// ⚠️ IMAGE NOTE — READ BEFORE EDITING THE MOCKUP ARRAY:
+// All Safira mockups are exported from a Figma device-mockup template that
+// bakes its OWN outer margin, fake status bar, and fake camera notch into
+// every PNG. Measured directly from safira-previewscreen.png (1712×3632px):
+//   - outer lavender margin:  ~1.9% left/right, ~0.9% top/bottom
+//   - fake status bar + notch: 0% → 5.7% from top
+//   - home-indicator + margin: last ~2.8% at the bottom
+// FigmaMockup crops this out precisely via background-size/background-position
+// (asymmetric crop — object-fit/scale alone isn't precise enough here) and
+// renders inside the SAME `.phone-frame` used by every other project (black
+// bezel + CSS notch + volume/power buttons — see globals.css, untouched).
+//
+// ⚠️ POSITIONING CONTRACT for <FigmaMockup>:
+// FigmaMockup does NOT set its own `position` (relative/absolute) — the
+// CALLER must always include one in `className`, because:
+//   - the hero cluster needs `absolute` (for the translate-x/y overlap)
+//   - the grid/gallery items need `relative` (normal flow, but still a
+//     positioned ancestor so the CSS-drawn notch/buttons render correctly)
+// If you add a new <FigmaMockup> and forget a position class, the
+// notch/button pseudo-elements will still render but won't be positioned
+// correctly relative to the frame.
+
+const FIGMA_CROP = {
+  // computed from safira-previewscreen.png — shared by all Safira mockups
+  backgroundSize: "103.95% 102.27%",
+  backgroundPosition: "44.23% 64.21%",
+};
+
+function FigmaMockup({
+  src,
+  alt,
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
+  return (
+    // No `relative`/`absolute` here — the caller supplies positioning via className.
+    // No `overflow-hidden` here either — that would clip the ::before (notch)
+    // and ::after (volume/power buttons), which intentionally poke outside
+    // the frame's box via negative offsets.
+    <div className={`phone-frame ${className}`}>
+      {/* Inner wrapper: THIS is what clips the cropped background image
+          to the rounded corner — isolated from the outer frame so the
+          notch/buttons above are never clipped. */}
+      <div className="relative w-full h-full overflow-hidden rounded-[22px]">
+        <div
+          role="img"
+          aria-label={alt}
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${src})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: FIGMA_CROP.backgroundSize,
+            backgroundPosition: FIGMA_CROP.backgroundPosition,
+          }}
+        />
+      </div>
+    </div>
+  );
+}
 
 interface SafiraPanelProps {
   isOpen: boolean;
@@ -17,16 +80,16 @@ interface SafiraPanelProps {
 
 export default function SafiraPanel({ isOpen, onClose }: SafiraPanelProps) {
   const mockupImages = [
-    "/images/safira/safira-login.png",
-    "/images/safira/safira-choose-truck-tank.png",
-    "/images/safira/safira-sync-load.png",
-    "/images/safira/safira-scanqr-unit.png",
-    "/images/safira/safira-info-unit.png",
-    "/images/safira/safira-dispense-flowmeter-info.png",
-    "/images/safira/safira-dispense-success.png",
-    "/images/safira/safira-receive-success.png",
-    "/images/safira/safira-recommendation.png",
-    "/images/tjp-fuel/tjp-history.png",
+    "/images/safira/safira-onboarding.png",
+    "/images/safira/safira-mainscreen.png",
+    "/images/safira/safira-camera.png",
+    "/images/safira/safira-addhazardscreen.png",
+    "/images/safira/safira-previewscreen.png",
+    "/images/safira/safira-historyhazardscreen.png",
+    "/images/safira/safira-safetyinformationscreen.png",
+    "/images/safira/safira-profilescreen.png",
+    "/images/safira/safira-informasipribadiscreen.png",
+    "/images/safira/safira-notificationscreen.png",
   ];
 
   const techStack = [
@@ -92,6 +155,8 @@ export default function SafiraPanel({ isOpen, onClose }: SafiraPanelProps) {
 
           {/* ══════════════════════════════════════════════════════════════════
               SECTION 1 — HERO: overlapping phones + meta card
+              Each phone below explicitly carries `absolute` in its className —
+              required now that FigmaMockup no longer sets position itself.
           ══════════════════════════════════════════════════════════════════ */}
           <section
             className="overflow-hidden py-20 md:py-28 px-6 md:px-12"
@@ -101,37 +166,37 @@ export default function SafiraPanel({ isOpen, onClose }: SafiraPanelProps) {
           >
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-              {/* Phone cluster */}
+              {/* Phone cluster — relative anchor for the 3 absolutely-positioned phones */}
               <div className="relative h-[460px] md:h-[600px] w-full flex justify-center items-center">
                 {/* Back phone */}
-                <div
-                  className="absolute z-10 w-44 md:w-60 phone-frame aspect-[9/19]
-                    -translate-y-12 md:-translate-y-16 shadow-2xl bg-black
+                <FigmaMockup
+                  src="/images/safira/safira-camera.png"
+                  alt="SAFIRA Dashboard"
+                  className="absolute z-10 w-44 md:w-60 aspect-[9/19]
+                    -translate-y-12 md:-translate-y-16
                     transition-transform hover:-translate-y-20 duration-500
                     ring-2 ring-white/20"
-                >
-                  <Image src="/images/tjp-fuel/tjp-homepage.png" alt="SAFIRA Dashboard" fill className="object-cover" />
-                </div>
+                />
 
                 {/* Front-left phone */}
-                <div
-                  className="absolute z-20 w-36 md:w-52 phone-frame aspect-[9/19]
+                <FigmaMockup
+                  src="/images/safira/safira-splash.png"
+                  alt="SAFIRA Splash Screen"
+                  className="absolute z-20 w-36 md:w-52 aspect-[9/19]
                     -translate-x-24 md:-translate-x-36 translate-y-16 md:translate-y-24
-                    shadow-2xl bg-black transition-transform hover:translate-y-10 duration-500
+                    transition-transform hover:translate-y-10 duration-500
                     ring-2 ring-[#06B6D4]/50"
-                >
-                  <Image src="/images/care/care-splash.png" alt="SAFIRA Splash Screen" fill className="object-cover" />
-                </div>
+                />
 
                 {/* Front-right phone */}
-                <div
-                  className="absolute z-20 w-36 md:w-52 phone-frame aspect-[9/19]
+                <FigmaMockup
+                  src="/images/safira/safira-previewscreen.png"
+                  alt="SAFIRA List View"
+                  className="absolute z-20 w-36 md:w-52 aspect-[9/19]
                     translate-x-24 md:translate-x-36 translate-y-4 md:translate-y-8
-                    shadow-2xl bg-black transition-transform hover:-translate-y-2 duration-500
+                    transition-transform hover:-translate-y-2 duration-500
                     ring-2 ring-white/20"
-                >
-                  <Image src="/images/tjp-fuel/tjp-choose-truck-tank.png" alt="SAFIRA List View" fill className="object-cover" />
-                </div>
+                />
               </div>
 
               {/* Title + meta card */}
@@ -175,6 +240,7 @@ export default function SafiraPanel({ isOpen, onClose }: SafiraPanelProps) {
 
           {/* ══════════════════════════════════════════════════════════════════
               SECTION 2 — GALLERY + LOGO + TECH BADGES
+              Every FigmaMockup here now explicitly carries `relative`.
           ══════════════════════════════════════════════════════════════════ */}
           <section
             className="py-16 md:py-24 px-6 md:px-12 border-b border-blue-100"
@@ -193,9 +259,11 @@ export default function SafiraPanel({ isOpen, onClose }: SafiraPanelProps) {
                 </div>
 
                 {/* Hero phone */}
-                <div className="w-48 md:w-56 phone-frame aspect-[9/19] shadow-xl bg-black relative ring-1 ring-blue-200">
-                  <Image src="/images/safira/neofy-homepage.jpeg" alt="SAFIRA Main Interface" fill className="object-cover" />
-                </div>
+                <FigmaMockup
+                  src="/images/safira/safira-camera.png"
+                  alt="SAFIRA Main Interface"
+                  className="relative w-48 md:w-56 aspect-[9/19] shadow-xl ring-1 ring-blue-200"
+                />
 
                 {/* Tech badges */}
                 <div className="flex flex-wrap gap-3 justify-center w-full">
@@ -218,14 +286,14 @@ export default function SafiraPanel({ isOpen, onClose }: SafiraPanelProps) {
               {/* Right column: screen grid */}
               <div className="lg:col-span-9 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5">
                 {mockupImages.map((imagePath, index) => (
-                  <div
+                  <FigmaMockup
                     key={index}
-                    className="w-full phone-frame aspect-[9/19] shadow-lg bg-black relative
+                    src={imagePath}
+                    alt={`Screen ${index + 1}`}
+                    className="relative w-full aspect-[9/19] shadow-lg
                       transition-transform hover:-translate-y-2 duration-300
-                      ring-1 ring-blue-100 rounded-[16px] overflow-hidden"
-                  >
-                    <Image src={imagePath} alt={`Screen ${index + 1}`} fill className="object-cover" />
-                  </div>
+                      ring-1 ring-blue-100"
+                  />
                 ))}
               </div>
             </div>
