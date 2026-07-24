@@ -39,11 +39,11 @@ export default function TjpFuelPanel({ isOpen, onClose }: TjpFuelPanelProps) {
   ];
 
   const jobDesc = [
-    "Mengembangkan dan merancang antarmuka (UI) aplikasi pemantauan konsumsi bahan bakar yang responsif menggunakan framework Flutter.",
+    "Membangun aplikasi mobile yang responsif dengan mengimplementasikan QR Code Scanner, OCR, hingga Kalkulasi Data untuk rekomendasi pengisian.",
     "Menerapkan pola arsitektur MVVM (Model-View-ViewModel) dipadukan dengan state management Provider untuk memastikan struktur kode yang bersih, modular, dan mudah diuji.",
-    "Mengintegrasikan database lokal menggunakan SQLite untuk mengakomodasi pencatatan data secara offline agar aplikasi tetap berfungsi optimal di area operasional terpencil.",
+    "Melakukan integrasi database lokal SQLite dan mekanisme sinkronisasi data untuk mendukung fungsionalitas aplikasi TJP Fuel Monitoring Apps secara online maupun offline.",
     "Menghubungkan aplikasi dengan REST API eksternal guna memproses sinkronisasi data transaksi pengisian bahan bakar ke server pusat secara real-time.",
-    "Melakukan pemecahan masalah (debugging), optimalisasi performa rendering, dan penanganan error untuk memastikan stabilitas aplikasi pada perangkat Android.",
+    "Melakukan debugging, manual testing dan bug fixing untuk memastikan stabilitas aplikasi TJP Fuel Monitoring Apps pada perangkat Android pengguna.",
   ];
 
   return (
@@ -138,7 +138,7 @@ export default function TjpFuelPanel({ isOpen, onClose }: TjpFuelPanelProps) {
                     className="text-xs font-bold tracking-[0.25em] uppercase mb-3"
                     style={{ color: "#FF8000" }}
                   >
-                    Enterprise Mobile App
+                    Company's Project
                   </p>
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight uppercase text-white leading-[0.9]">
                     TJP Fuel<br />
@@ -299,15 +299,6 @@ export default function TjpFuelPanel({ isOpen, onClose }: TjpFuelPanelProps) {
           <span className="text-white/60">
             © {new Date().getFullYear()} Habib Nur Sholeh.
           </span>
-          <a
-            href="https://github.com/HabibNS"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold hover:opacity-80 transition-opacity"
-            style={{ color: "#FF8000" }}
-          >
-            View on GitHub ↗
-          </a>
         </footer>
 
       </div>

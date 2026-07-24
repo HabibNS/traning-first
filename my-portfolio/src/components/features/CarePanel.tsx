@@ -38,7 +38,7 @@ export default function CarePanel({ isOpen, onClose }: CarePanelProps) {
   const meta = [
     { title: "Role", value: "Mobile Apps Developer" },
     { title: "Platform", value: "Android" },
-    { title: "Tech Stack", value: "Kotlin · Android Studio" },
+    { title: "Tech Stack", value: "Kotlin · Jetpack Compose · MVVM · Retrofit" },
   ];
 
   const jobDesc = [
@@ -143,7 +143,7 @@ export default function CarePanel({ isOpen, onClose }: CarePanelProps) {
                     className="text-xs font-bold tracking-[0.3em] uppercase mb-3"
                     style={{ color: "#D1D8C5" }}
                   >
-                    Emotional Wellness App
+                    My Capstone Project
                   </p>
                   <h1
                     className="text-6xl md:text-7xl lg:text-[84px] font-extrabold tracking-tight leading-[0.88] text-white"
@@ -285,9 +285,6 @@ export default function CarePanel({ isOpen, onClose }: CarePanelProps) {
                     </p>
                   </div>
 
-                  {/* Divider */}
-                  <div style={{ borderTop: "1px solid #EEEEEE" }} />
-
                   {/* Job description */}
                   <div>
                     <h4
@@ -330,7 +327,7 @@ export default function CarePanel({ isOpen, onClose }: CarePanelProps) {
             © {new Date().getFullYear()} Habib Nur Sholeh.
           </span>
           <a
-            href="https://github.com/HabibNS"
+            href="https://github.com/Children-s-Autism-Resource-Education/CARE-Mobile-Development"
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold hover:opacity-80 transition-opacity"

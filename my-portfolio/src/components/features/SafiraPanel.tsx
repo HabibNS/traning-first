@@ -104,11 +104,11 @@ export default function SafiraPanel({ isOpen, onClose }: SafiraPanelProps) {
   ];
 
   const jobDesc = [
-    "Mengembangkan dan merancang antarmuka (UI) aplikasi pemantauan konsumsi bahan bakar yang responsif menggunakan framework Flutter.",
+    "Melakukan setup project hingga development UI menggunakan framework Flutter.",
     "Menerapkan pola arsitektur MVVM (Model-View-ViewModel) dipadukan dengan state management Provider untuk memastikan struktur kode yang bersih, modular, dan mudah diuji.",
-    "Mengintegrasikan database lokal menggunakan SQLite untuk mengakomodasi pencatatan data secara offline agar aplikasi tetap berfungsi optimal di area operasional terpencil.",
-    "Menghubungkan aplikasi dengan REST API eksternal guna memproses sinkronisasi data transaksi pengisian bahan bakar ke server pusat secara real-time.",
-    "Melakukan pemecahan masalah (debugging), optimalisasi performa rendering, dan penanganan error untuk memastikan stabilitas aplikasi pada perangkat Android.",
+    "Menghubungkan aplikasi dengan REST API eksternal guna mendukung fungsionalitas aplikasi SAFIRA.",
+    "Membangun user experience dengan mengimplementasikan user session management.",
+    "Melakukan development fitur-fitur inti seperti, Hazard Reporting dan Appreciation Reporting."
   ];
 
   return (
@@ -206,7 +206,7 @@ export default function SafiraPanel({ isOpen, onClose }: SafiraPanelProps) {
                     className="text-xs font-bold tracking-[0.25em] uppercase mb-3"
                     style={{ color: "#06B6D4" }}
                   >
-                    Enterprise Mobile App
+                    Company's Product
                   </p>
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight uppercase text-white leading-[0.9]">
                     SAFIRA.
@@ -327,11 +327,10 @@ export default function SafiraPanel({ isOpen, onClose }: SafiraPanelProps) {
                     Description
                   </h4>
                   <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                    TJP Fuel Monitoring Apps adalah aplikasi mobile tingkat enterprise yang dirancang khusus
-                    untuk memantau, mengelola, dan menganalisis data konsumsi bahan bakar secara akurat dan
-                    real-time. Fokus utama proyek ini adalah menyediakan visualisasi data operasional yang
-                    intuitif bagi pengguna, serta memastikan keandalan penyimpanan data pada kondisi jaringan
-                    yang tidak stabil di lapangan.
+                    SAFIRA adalah aplikasi android sebagai produk perusahaan dari PT Global Service Indonesia yang digunakan untuk
+                    pelaporan mengenai potensi bahaya (hazard) yang dapat mengancam keselamatan kerja di area operasional.
+                    Fokus utama proyek ini adalah memberikan kemudahan bagi para karyawan untuk melaporkan bahaya secara cepat dan 
+                    efisien, sehingga keselamatan kerja dapat selalu terjaga dengan baik serta mengurangi risiko kecelakaan kerja di lingkungan perusahaan.
                   </p>
                 </div>
 
@@ -372,15 +371,6 @@ export default function SafiraPanel({ isOpen, onClose }: SafiraPanelProps) {
           <span className="text-white/60">
             © {new Date().getFullYear()} Habib Nur Sholeh.
           </span>
-          <a
-            href="https://github.com/HabibNS"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold hover:opacity-80 transition-opacity"
-            style={{ color: "#06B6D4" }}
-          >
-            View on GitHub ↗
-          </a>
         </footer>
 
       </div>

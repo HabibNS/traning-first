@@ -37,9 +37,10 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
   ];
 
   const meta = [
-    { title: "Role", value: "Mobile Apps Developer" },
-    { title: "Platform", value: "Android" },
+    { title: "Role", value: "IoT & Software Developer" },
+    { title: "Platform", value: "Android & ESP32" },
     { title: "Tech Stack", value: "Flutter · MVC · Firebase" },
+    { title: "Tools", value: "Arduino · Figma · Android Studio · Draw.io" },
   ];
 
   const jobDesc = [
@@ -147,7 +148,7 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
                     className="text-xs font-bold tracking-[0.3em] uppercase mb-3"
                     style={{ color: "#00E97B" }}
                   >
-                    The Future is Ours
+                    My Final Project
                   </p>
                   <h1
                     className="text-6xl md:text-7xl lg:text-[84px] font-extrabold tracking-tight leading-[0.88]"
@@ -286,16 +287,12 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
                       Description
                     </h4>
                     <p className="text-base md:text-lg leading-relaxed" style={{ color: "#395040" }}>
-                      NeoFy adalah aplikasi mobile tingkat enterprise yang dirancang khusus
-                      untuk memantau, mengelola, dan menganalisis data konsumsi bahan bakar secara akurat dan
-                      real-time. Fokus utama proyek ini adalah menyediakan visualisasi data operasional yang
-                      intuitif bagi pengguna, serta memastikan keandalan penyimpanan data pada kondisi jaringan
-                      yang tidak stabil di lapangan.
+                      NeoFy adalah aplikasi mobile IoT berbasis Android yang digunakan pada stasiun cuaca skala mikro khusus 
+                      untuk lahan pertanian sebagai sistem monitoring cuaca untuk membantu para petani mengontrol dan membuat keputusan 
+                      terhadap budidaya lahan mereka. Fokus utama proyek ini adalah menyediakan platform visualisasi data yang 
+                      intuitif dan mudah dipahami oleh pengguna yaitu para petani.
                     </p>
                   </div>
-
-                  {/* Divider */}
-                  <div style={{ borderTop: "1px solid #D5FADD" }} />
 
                   {/* Job description */}
                   <div>
@@ -339,7 +336,7 @@ export default function NeofyPanel({ isOpen, onClose }: NeofyPanelProps) {
             © {new Date().getFullYear()} Habib Nur Sholeh.
           </span>
           <a
-            href="https://github.com/HabibNS"
+            href="https://github.com/HabibNS/neofy_app.git"
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold hover:opacity-80 transition-opacity"
